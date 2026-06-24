@@ -11,6 +11,7 @@ public class GUIUtils {
     public static JTextField createTextField(int columns){
         JTextField textField = new JTextField(columns);
         textField.setFont(myFont);
+        textField.putClientProperty("FlatLaf.style","focusWidth: 0");
         return textField;
     }
 
