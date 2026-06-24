@@ -1,6 +1,9 @@
 # Numerical Methods (Java ☕)
 
 A Java-based scientific computing application with a GU  for numerical methods, including integration, differentiation, solving nonlinear equations, and related applications.  
+
+<img width="998" height="651" alt="preview" src="https://github.com/user-attachments/assets/b2024b21-b4fd-4c42-bdf3-0022122ef71e" />
+
 ## 🛠️ Libraries Used
 Expression Evaluation: [Exp4j](https://github.com/fasseg/exp4j)
 
