@@ -1,8 +1,9 @@
 # Numerical Methods (Java ☕)
 
-A Java-based scientific computing application with a GU  for numerical methods, including integration, differentiation, solving nonlinear equations, and related applications.  
+A Java-based scientific computing application with a GUI for numerical methods, including integration, differentiation, solving nonlinear equations, and related applications.  
 
-<img width="998" height="651" alt="preview" src="https://github.com/user-attachments/assets/b2024b21-b4fd-4c42-bdf3-0022122ef71e" />
+<img width="1000" height="652" alt="preview" src="https://github.com/user-attachments/assets/5c6fd53d-5b1a-465d-b54b-2022ade341e3" />
+
 
 ## 🛠️ Libraries Used
 Expression Evaluation: [Exp4j](https://github.com/fasseg/exp4j)
@@ -15,9 +16,9 @@ Graphs: [JFreeChart](https://github.com/jfree/jfreechart)
 
 ## 📊 1. Numerical Integration
 
-1.  Riemann Sums 
-2.  Trapezoidal Rule 
-3.  Simpson 1/3 Rule 
+1.  Riemann Sums ✔️
+2.  Trapezoidal Rule ✔️
+3.  Simpson 1/3 Rule ✔️
 4.  Romberg Integration
 5.  Gauss Quadrature
 
