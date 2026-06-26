@@ -18,7 +18,7 @@ public class GUIUtils {
     public static JLabel createLabel(String text){
         JLabel label = new JLabel(text);
         label.setFont(myFont);
-        label.setHorizontalAlignment(JLabel.CENTER);
+
         label.setBackground(new Color(45,45,48));
         return label;
     }
@@ -28,14 +28,6 @@ public class GUIUtils {
         button.setFont(myFont);
         button.setFocusable(false);
         return button;
-    }
-
-    public static JComboBox createComboBox(String[] selections){
-        JComboBox comboBox = new JComboBox(selections);
-        comboBox.setPreferredSize(new Dimension(170,30));
-        comboBox.setFont(myFont);
-        comboBox.setFocusable(false);
-        return comboBox;
     }
 
     public static JPanel createInputBlock(JLabel label, JComponent field){

@@ -9,8 +9,8 @@ public class Simpson extends Integrator{
     public double simpson(String f, String a, String b, int n){
         if(n%2!=0) throw new IllegalArgumentException("Subinterval must be even for simpson's");
         validateSubintervals(n);
-        double start = MathParser.evalLimits(a);
-        double end = MathParser.evalLimits(b);
+        double start = MathParser.evalLimit(a);
+        double end = MathParser.evalLimit(b);
 
         Expression function = MathParser.parse(f);
         double h = calculateStepSize(start,end,n);

@@ -32,7 +32,7 @@ public class MathParser {
             throw new IllegalArgumentException("Unsupported Type: Improper Integral");
         }
     }
-    public static double evalLimits(String limit){
+    public static double evalLimit(String limit){
         if (limit.isEmpty()){
             throw new IllegalArgumentException("Invalid Limit");
         }

@@ -1,25 +1,20 @@
 package GUI;
 
 import Integration.Integrate;
-import Integration.Integrator;
+import Integration.RectangleType;
 
 import javax.swing.*;
 import java.awt.*;
-
 
 
 public class IntegrationPanel extends JPanel {
 
     private static final int MAX_SUBINTERVAL = 1000000;
 
-
-
-
     public IntegrationPanel(){
         // Methods Box
         JLabel methodsLabel = GUIUtils.createLabel("Method");
-        String[] methods = {"Simpson 1/3", "Trapezoidal", "Romberg Integration", "Gauss Quadrature", "Left Rectangular", "Right Rectangular"};
-        JComboBox methodsBox = GUIUtils.createComboBox(methods);
+        JComboBox<IntEnum> methodsBox = new JComboBox<>(IntEnum.values());
 
         // Labels
         JLabel functionLabel = GUIUtils.createLabel("Function");
@@ -30,9 +25,9 @@ public class IntegrationPanel extends JPanel {
 
         // Text Fields
         JTextField functionField = GUIUtils.createTextField(15);
-        JTextField startField = GUIUtils.createTextField(5);
-        JTextField endField = GUIUtils.createTextField(5);
-        JTextField subintervalField = GUIUtils.createTextField(5);
+        JTextField startField = GUIUtils.createTextField(15);
+        JTextField endField = GUIUtils.createTextField(15);
+        JTextField subintervalField = GUIUtils.createTextField(15);
         JTextField resultField = GUIUtils.createTextField(15);
 
         // Button
@@ -47,7 +42,7 @@ public class IntegrationPanel extends JPanel {
 
                 checkSubintervalLimit(subinterval);
 
-                double result = evaluate(methodsBox.getSelectedIndex(),function,start,end,subinterval);
+                double result = evaluate((IntEnum) methodsBox.getSelectedItem(),function,start,end,subinterval);
                 resultField.setText(String.valueOf(result));
 
             } catch (NumberFormatException exception){
@@ -71,20 +66,25 @@ public class IntegrationPanel extends JPanel {
         JPanel row1 = new JPanel(new FlowLayout(FlowLayout.LEFT,25, 0));
         row1.setOpaque(false);
         row1.add(methodsPanel);
-        row1.add(functionPanel);
 
 
         JPanel row2 = new JPanel(new FlowLayout(FlowLayout.LEFT, 25,0));
         row2.setOpaque(false);
+        row2.add(functionPanel);
         row2.add(startPanel);
-        row2.add(endPanel);
-        row2.add(subintervalPanel);
+
+        JPanel row3 = new JPanel(new FlowLayout(FlowLayout.LEFT, 25,0));
+        row3.setOpaque(false);
+        row3.add(endPanel);
+        row3.add(subintervalPanel);
 
         JPanel upperCardLeft = new JPanel();
-        upperCardLeft.setLayout(new BoxLayout(upperCardLeft,BoxLayout.Y_AXIS));
+        upperCardLeft.setLayout(new GridLayout(3,2));
         upperCardLeft.setOpaque(false);
         upperCardLeft.add(row1);
         upperCardLeft.add(row2);
+        upperCardLeft.add(row3);
+
 
         JPanel upperCardRight = new JPanel(new BorderLayout());
         upperCardRight.setOpaque(false);
@@ -100,7 +100,7 @@ public class IntegrationPanel extends JPanel {
 
         // Lower Card Panels
         JPanel resultPanel = GUIUtils.createInputBlock(resultLabel, resultField);
-        resultField.setEnabled(false);
+        resultField.setEditable(false);
 
         // Lower Card
         JPanel dataPanel = GUIUtils.createCardPanel();
@@ -116,16 +116,15 @@ public class IntegrationPanel extends JPanel {
 
 
     }
-    // TODO: Replace with Enums
-    public double evaluate(int index,String function, String a, String b, int n){
+    public double evaluate(IntEnum item,String function, String a, String b, int n){
         double result;
-        return switch (index){
-            case 0 -> result = Integrate.simpson(function,a,b,n);
-            //case 1 -> result = Integrate.trapezoidal(function,a,b,n);
-            //case 2 -> result = Integrate.romberg(function,a,b,n);
-            //case 3 -> result = Integrate.gauss(function,a,b,n);
-            //case 4 -> result = Integrate.leftRectangular(function,a,b,n);
-            //case 5 -> result = Integrate.rightRectangular(function,a,b,n);
+        return switch (item){
+            case IntEnum.SIMPSON -> result = Integrate.simpson(function,a,b,n);
+            case IntEnum.TRAPEZOIDAL  -> result = Integrate.trapezoidal(function,a,b,n);
+            case IntEnum.LEFT  -> result = Integrate.rectangle(function,a,b,n, RectangleType.LEFT);
+            case IntEnum.RIGHT  -> result = Integrate.rectangle(function,a,b,n, RectangleType.RIGHT);
+            //case IntEnum.SIMPSON  -> result = Integrate.leftRectangular(function,a,b,n);
+            //case IntEnum.SIMPSON  -> result = Integrate.rightRectangular(function,a,b,n);
             default -> throw new IllegalArgumentException("Unknown Method");
         };
     }
